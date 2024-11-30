@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "testcafe": "^3.7.0"
+  },
+  "scripts": {
+    "test": "testcafe chrome tests Salesman/"
+}
+
+}
