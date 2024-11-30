@@ -3,7 +3,10 @@
     "testcafe": "^3.7.0"
   },
   "scripts": {
-    "test": "testcafe chrome tests Salesman/"
-}
-
+    "test": "testcafe chrome tests Salesman/*.js --screenshots ./screenshots",
+    "test:reports": "testcafe chrome tests Salesman/*.js --skip-js-errors --reporter html:reports/report.html"
+  },
+  "dependencies": {
+    "testcafe-reporter-html": "^1.4.6"
+  }
 }

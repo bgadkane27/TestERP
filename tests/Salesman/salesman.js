@@ -3,23 +3,23 @@ import loginPage from "../../pages/LoginPage";
 const config = require('../../utils/login.json')
 const sales = require('../../utils/salesman.json')
 
-const login = Role('./', async t => {
-    await t.maximizeWindow()
-    await loginPage.login(config[0].username, config[0].password);
+// const login = Role('./', async t => {
+//     await t.maximizeWindow()
+//     await loginPage.login(config[0].username, config[0].password);
     
-}, { preserveUrl: true });
+// }, { preserveUrl: true });
 
 fixture("Salesman")
     .page("./")
-    // .beforeEach(async t => {
-    //     await t.maximizeWindow()
-    //     await loginPage.login(config[0].username, config[0].password)
-    // })
+    .beforeEach(async t => {
+        await t.maximizeWindow()
+        await loginPage.login(config[0].username, config[0].password)
+    })
 
 test("CreateSalesman", async (t) => {
 
     await t
-        .useRole(login)
+       // .useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .click("#MainMenu_DXI0_T")
@@ -38,32 +38,34 @@ test("CreateSalesman", async (t) => {
         .expect(Selector('.dx-toast-message').innerText).contains("Salesman created successfully!");
 });
 
-test.skip("DulplicateSalesman", async (t) => {
+test("DulplicateSalesman-Not Allow", async (t) => {
 
     await t
-        .useRole(login)
+        //.useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .click("#MainMenu_DXI0_T")
+        .wait(2000)
         .typeText("input[name='Salesman.Name']", sales[0].name)
-        //.typeText("#Salesman\.NameL2_I", sales[0].name)
-        .click("#Other_RPHT")
-        .typeText("input[name='Salesman.SalesCommissionInPercent'], #Salesman.SalesCommissionInPercent_I", sales[0].percentage)
-        .typeText("input[name='Salesman.Title'], #Salesman.Title_I", sales[0].title)
-        .typeText("input[name='Salesman.Email'], #Salesman.Email_I", sales[0].email)
-        .typeText("input[name='Salesman.ExtensionNumber'], #Salesman.ExtensionNumber_I", sales[0].extension)
-        .typeText("input[name='Salesman.MobileNumber'], #Salesman.MobileNumber_I", sales[0].mobile)
+        // .click("#Other_RPHT")
+        // .typeText("input[name='Salesman.SalesCommissionInPercent'], #Salesman.SalesCommissionInPercent_I", sales[0].percentage)
+        // .typeText("input[name='Salesman.Title'], #Salesman.Title_I", sales[0].title)
+        // .typeText("input[name='Salesman.Email'], #Salesman.Email_I", sales[0].email)
+        // .typeText("input[name='Salesman.ExtensionNumber'], #Salesman.ExtensionNumber_I", sales[0].extension)
+        // .typeText("input[name='Salesman.MobileNumber'], #Salesman.MobileNumber_I", sales[0].mobile)
 
         //Click on Save
         .click("#MainMenu_DXI0_T")
         //Assertion
-        .expect(Selector('#ValidationSummary').innerText).contains("Cannot insert duplicate");
+        .expect(Selector('#ValidationSummary').innerText).contains("Cannot insert duplicate")
+
+        await t.takeScreenshot({ path: `${Date.now()}.png` })        
 });
 
 test("DeleteSalesman", async (t) => {
 
     await t
-        .useRole(login)
+       // .useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .typeText(Selector('.dx-texteditor-input').nth(2), sales[0].name)
@@ -75,14 +77,5 @@ test("DeleteSalesman", async (t) => {
         // .click(Selector(".dx-button-normal, aria-label= 'Ok'"))
         .click(Selector(".dx-button-content").nth(8))        
 
-        // .typeText("input[name='Salesman.SalesCommissionInPercent'], #Salesman.SalesCommissionInPercent_I", sales[0].percentage)
-        // .typeText("input[name='Salesman.Title'], #Salesman.Title_I", sales[0].title)
-        // .typeText("input[name='Salesman.Email'], #Salesman.Email_I", sales[0].email)
-        // .typeText("input[name='Salesman.ExtensionNumber'], #Salesman.ExtensionNumber_I", sales[0].extension)
-        // .typeText("input[name='Salesman.MobileNumber'], #Salesman.MobileNumber_I", sales[0].mobile)
-
-        // //Click on Save
-        // .click("#MainMenu_DXI0_T")
-        // //Assertion
-        // .expect(Selector('#ValidationSummary').innerText).contains("Cannot insert duplicate");
+        .expect(Selector('.dx-toast-message').innerText).contains("Record deleted successfully!");
 });

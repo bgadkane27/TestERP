@@ -6,5 +6,16 @@ hostname : os.hostname(),
 // other settings
 baseUrl: "https://testerp.onenfinity.com/",
 //concurrency : 2,
+browsers: ["chrome","edge"],
+selectorTimeOut: 5000,
+assertionTimeOut: 5000,
+pageLoadTimeOut: 5000,
+speed: 1,
+
+screenshots: {
+    path: "./screenshots/",
+    takeOnFails: true,
+    fullPage: false
+}
 
 }
