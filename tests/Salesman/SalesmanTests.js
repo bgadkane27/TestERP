@@ -3,23 +3,23 @@ import loginPage from "../../pages/LoginPage";
 const config = require('../../utils/login.json')
 const sales = require('../../utils/salesman.json')
 
-// const login = Role('./', async t => {
-//     await t.maximizeWindow()
-//     await loginPage.login(config[0].username, config[0].password);
+const login = Role('./', async t => {
+    await t.maximizeWindow()
+    await loginPage.login(config[0].username, config[0].password);
 
-// }, { preserveUrl: true });
+}, { preserveUrl: true });
 
 fixture("Salesman")
     .page("./")
-    .beforeEach(async t => {
-        await t.maximizeWindow()
-        await loginPage.login(config[0].username, config[0].password)
-    })
+    // .beforeEach(async t => {
+    //     await t.maximizeWindow()
+    //     await loginPage.login(config[0].username, config[0].password)
+    // })
 
-test("CreateNewSalesman : " + sales[0].name, async (t) => {
+test("CreateNewSalesman: " + sales[0].name, async (t) => {
 
     await t
-        //.useRole(login)
+        .useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .click("#MainMenu_DXI0_T")
@@ -37,10 +37,10 @@ test("CreateNewSalesman : " + sales[0].name, async (t) => {
         .expect(Selector('.dx-toast-message').innerText).contains("Salesman created successfully!");
 });
 
-test("CreateDulplicateSalesman-Not Allowed : " + sales[0].name, async (t) => {
+test("CreateDulplicateSalesman-Not Allowed: " + sales[0].name, async (t) => {
 
     await t
-        //.useRole(login)
+        .useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .click("#MainMenu_DXI0_T")
@@ -57,7 +57,7 @@ test("CreateDulplicateSalesman-Not Allowed : " + sales[0].name, async (t) => {
 test("UpdateExistingSalesman: " + sales[0].name, async (t) => {
 
     await t
-        //.useRole(login)
+        .useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .typeText(Selector('.dx-texteditor-input').nth(2), sales[0].name)
@@ -99,10 +99,10 @@ test("UpdateExistingSalesman: " + sales[0].name, async (t) => {
         .expect(Selector("input[name='Salesman.Email'], #Salesman.Email_I").value).contains(sales[1].email);
 });
 
-test("DeleteExistingSalesman : " + sales[0].name, async (t) => {
+test("DeleteExistingSalesman: " + sales[0].name, async (t) => {
 
     await t
-        //.useRole(login)
+        .useRole(login)
         .click("#leftNavigation_I2i3_T")
         .click("#NavViewCommon_I0i2_T")
         .typeText(Selector('.dx-texteditor-input').nth(2), sales[0].name)
