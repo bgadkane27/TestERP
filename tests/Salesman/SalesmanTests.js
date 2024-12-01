@@ -12,6 +12,13 @@ const login = Role('./', async t => {
 
 }, { preserveUrl: true });
 
+async function clearAndType(selector, value) {
+    await t
+        .click(selector)
+        .pressKey("ctrl+a delete")
+        .typeText(selector, value);
+}
+
 fixture('Salesman').page('./')
 
 test('CreateNewSalesman: ' + salesman.new.name, async t => {
@@ -41,13 +48,6 @@ test("CreateDulplicateSalesman-Not Allowed: " + salesman.new.name, async (t) => 
 
 });
 
-async function clearAndType(selector, value) {
-    await t
-        .click(selector)
-        .pressKey("ctrl+a delete")
-        .typeText(selector, value);
-}
-
 test("UpdateExistingSalesman: " + salesman.update.name, async t => {
     await t
         .useRole(login)
@@ -68,8 +68,8 @@ test("UpdateExistingSalesman: " + salesman.update.name, async t => {
     await clearAndType(email, salesman.update.email);
     await clearAndType(extension, salesman.update.extension);
     await clearAndType(mobile, salesman.update.mobile);
-    
-    await t  
+
+    await t
         //Click on Save
         .click("#MainMenu_DXI0_T")
         //Click on view
