@@ -3,9 +3,9 @@ import { Selector, t } from "testcafe";
 
 class SalesmanPage {
     constructor() {
-        this.setupmenu = Selector("#leftNavigation_I2i3_T");
-        this.setupsalesman = Selector("#NavViewCommon_I0i2_T");
-        this.newsalesman = Selector("#MainMenu_DXI0_T");
+        this.setupmenu = Selector("#leftNavigation_I2i3_T")
+        this.setupsalesman = Selector("#NavViewCommon_I0i2_T")
+        this.newsalesman = Selector("#MainMenu_DXI0_T")
         this.salesmanname=  Selector("input[name='Salesman.Name']")
         this.salesmangrid= Selector("#Other_RPHT")
         this.salespercentage =Selector("input[name='Salesman.SalesCommissionInPercent'], #Salesman.SalesCommissionInPercent_I")
@@ -18,7 +18,7 @@ class SalesmanPage {
         this.salesmaninput= Selector(".dx-texteditor-input").nth(2)
         this.salesmancontextmenu= Selector("#MainMenu_DXI12_PImg")
         this.deletebutton= Selector("#MainMenu_DXI3_T")
-        this.deleteokbutton= Selector(".dx-button-content").nth(8)        
+        this.deleteokbutton= Selector(".dx-button-content").nth(6)        
     }
 
     async navigateToSalesmanSection(){
@@ -26,20 +26,45 @@ class SalesmanPage {
         .click(this.setupmenu)
         .click(this.setupsalesman)        
     }
-    async createNewSalesman(salesman){
+    async createNewSalesman(name, percentage, title, email, extension, mobile){
         await t
         .click(this.newsalesman)
-        .typeText(this.salesmanname, salesman.name)
+        .typeText(this.salesmanname, name)
         .click(this.salesmangrid)
-        .typeText(this.salespercentage, salesman.percentage)
-        .typeText(this.salestitle, salesman.title)
-        .typeText(this.salesemail, salesman.email)
-        .typeText(this.salesextension, salesman.extension)
-        .typeText(this.salesmobile, salesman.mobile)
+        .typeText(this.salespercentage, percentage)
+        .typeText(this.salestitle, title)
+        .typeText(this.salesemail, email)
+        .typeText(this.salesextension, extension)
+        .typeText(this.salesmobile, mobile)
         .click(this.savebutton)        
     }
-    async updateSalesman(salesman){
+
+    async duplicateSalesman(name){
         await t
-        .doubleClick(this.doubleclick)        
+        .click(this.newsalesman)
+        .wait(2000)
+        .typeText(this.salesmanname, name)
+        .click(this.savebutton)       
+    }
+
+    async deleteSalesman(name){
+        await t
+        .typeText(this.salesmaninput, name)
+        .wait(2000)
+        .click(this.doubleclick)
+        .click(this.salesmancontextmenu)
+        .click(this.deletebutton)
+        .wait(2000)
+        .click(this.deleteokbutton)
+    }
+
+    async updateSalesman(name){
+        await t
+        .typeText(this.salesmaninput, name)
+        .wait(2000)
+        .doubleClick(this.doubleclick)
+        .click(this.salesmangrid)
     }
 }
+
+export default new SalesmanPage();

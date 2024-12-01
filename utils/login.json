@@ -1,6 +1,7 @@
-[
+{
+"logincredentials":
     {
         "username" : "pass@demo.com",
         "password" : "123"
     }
-]
+}

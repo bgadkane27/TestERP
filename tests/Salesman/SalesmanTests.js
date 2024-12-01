@@ -1,119 +1,93 @@
-import { Role, Selector } from "testcafe";
+import { fixture, Role, Selector } from "testcafe";
 import loginPage from "../../pages/LoginPage";
+import SalesmanPage from '../../pages/SalesmanPage'
 const config = require('../../utils/login.json')
-const sales = require('../../utils/salesman.json')
+const salesman = require('../../utils/salesman.json')
+import { assertSalesmanCreated, assertSalesmanDuplicate, assertSalesmanDelete } from '../../assertions/salesmanAssertions'
+
 
 const login = Role('./', async t => {
     await t.maximizeWindow()
-    await loginPage.login(config[0].username, config[0].password);
+    await loginPage.login(config.logincredentials.username, config.logincredentials.password);
 
 }, { preserveUrl: true });
 
-fixture("Salesman")
-    .page("./")
-    // .beforeEach(async t => {
-    //     await t.maximizeWindow()
-    //     await loginPage.login(config[0].username, config[0].password)
-    // })
+fixture('Salesman').page('./')
 
-test("CreateNewSalesman: " + sales[0].name, async (t) => {
-
+test('CreateNewSalesman: ' + salesman.new.name, async t => {
     await t
-        .useRole(login)
-        .click("#leftNavigation_I2i3_T")
-        .click("#NavViewCommon_I0i2_T")
-        .click("#MainMenu_DXI0_T")
-        .typeText("input[name='Salesman.Name']", sales[0].name)
-        .click("#Other_RPHT")
-        .typeText("input[name='Salesman.SalesCommissionInPercent'], #Salesman.SalesCommissionInPercent_I", sales[0].percentage)
-        .typeText("input[name='Salesman.Title'], #Salesman.Title_I", sales[0].title)
-        .typeText("input[name='Salesman.Email'], #Salesman.Email_I", sales[0].email)
-        .typeText("input[name='Salesman.ExtensionNumber'], #Salesman.ExtensionNumber_I", sales[0].extension)
-        .typeText("input[name='Salesman.MobileNumber'], #Salesman.MobileNumber_I", sales[0].mobile)
-
-        //Click on Save
-        .click("#MainMenu_DXI0_T")
-        //Assertion
-        .expect(Selector('.dx-toast-message').innerText).contains("Salesman created successfully!");
+        .useRole(login);
+    await
+        SalesmanPage.navigateToSalesmanSection();
+    await
+        SalesmanPage.createNewSalesman(salesman.new.name,
+            salesman.new.percentage,
+            salesman.new.title,
+            salesman.new.email,
+            salesman.new.extension,
+            salesman.new.mobile);
+    await assertSalesmanCreated(t, "Salesman created successfully!");
 });
 
-test("CreateDulplicateSalesman-Not Allowed: " + sales[0].name, async (t) => {
+test("CreateDulplicateSalesman-Not Allowed: " + salesman.new.name, async (t) => {
 
     await t
         .useRole(login)
-        .click("#leftNavigation_I2i3_T")
-        .click("#NavViewCommon_I0i2_T")
-        .click("#MainMenu_DXI0_T")
-        .wait(2000)
-        .typeText("input[name='Salesman.Name']", sales[0].name)
-        //Click on Save
-        .click("#MainMenu_DXI0_T")
-        //Assertion
-        .expect(Selector('#ValidationSummary').innerText).contains("Cannot insert duplicate")
-    // await t
-    //     .takeScreenshot({ path: `${Date.now()}.png` })
+    await
+        SalesmanPage.navigateToSalesmanSection();
+    await
+        SalesmanPage.duplicateSalesman(salesman.new.name);
+    await assertSalesmanDuplicate(t, "Cannot insert duplicate")
+
 });
 
-test("UpdateExistingSalesman: " + sales[0].name, async (t) => {
+async function clearAndType(selector, value) {
+    await t
+        .click(selector)
+        .pressKey("ctrl+a delete")
+        .typeText(selector, value);
+}
 
+test("UpdateExistingSalesman: " + salesman.update.name, async t => {
     await t
         .useRole(login)
-        .click("#leftNavigation_I2i3_T")
-        .click("#NavViewCommon_I0i2_T")
-        .typeText(Selector('.dx-texteditor-input').nth(2), sales[0].name)
-        .wait(2000)
-        .doubleClick(".list-hyperlink")
-        .click("#Other_RPHT")
+    await
+        SalesmanPage.navigateToSalesmanSection()
+    await
+        SalesmanPage.updateSalesman(salesman.update.name)
 
     const salesCommissionInPercent = Selector("input[name='Salesman.SalesCommissionInPercent'], #Salesman.SalesCommissionInPercent_I")
     const title = Selector("input[name='Salesman.Title'], #Salesman.Title_I")
     const email = Selector("input[name='Salesman.Email'], #Salesman.Email_I")
     const extension = Selector("input[name='Salesman.ExtensionNumber'], #Salesman.ExtensionNumber_I")
     const mobile = Selector("input[name='Salesman.MobileNumber'], #Salesman.MobileNumber_I")
-    await t
 
-        .click(salesCommissionInPercent)
-        .pressKey("ctrl+a delete")
-        .typeText(salesCommissionInPercent, sales[1].percentage)
 
-        .click(title)
-        .pressKey("ctrl+a delete")
-        .typeText(title, sales[1].title)
-
-        .click(email)
-        .pressKey("ctrl+a delete")
-        .typeText(email, sales[1].email)
-
-        .click(extension)
-        .pressKey("ctrl+a delete")
-        .typeText(extension, sales[1].extension)
-
-        .click(mobile)
-        .pressKey("ctrl+a delete")
-        .typeText(mobile, sales[1].mobile)
-
+    await clearAndType(salesCommissionInPercent, salesman.update.percentage);
+    await clearAndType(title, salesman.update.title);
+    await clearAndType(email, salesman.update.email);
+    await clearAndType(extension, salesman.update.extension);
+    await clearAndType(mobile, salesman.update.mobile);
+    
+    await t  
         //Click on Save
         .click("#MainMenu_DXI0_T")
+        //Click on view
         .click("#MainMenu_DXI1_T")
         //Assertion
-        .expect(Selector("input[name='Salesman.Email'], #Salesman.Email_I").value).contains(sales[1].email);
+        .expect(Selector("input[name='Salesman.Email'], #Salesman.Email_I").value).contains(salesman.update.email);
 });
 
-test("DeleteExistingSalesman: " + sales[0].name, async (t) => {
+test("DeleteExistingSalesman: " + salesman.delete.name, async (t) => {
 
     await t
         .useRole(login)
-        .click("#leftNavigation_I2i3_T")
-        .click("#NavViewCommon_I0i2_T")
-        .typeText(Selector('.dx-texteditor-input').nth(2), sales[0].name)
-        .wait(2000)
-        .click(".list-hyperlink")
-        .click("#MainMenu_DXI12_PImg")
-        .click("#MainMenu_DXI3_T")
-        .wait(2000)
+    await
+        SalesmanPage.navigateToSalesmanSection()
+    await
+        SalesmanPage.deleteSalesman(salesman.delete.name)
+    await assertSalesmanDelete(t, "Record deleted successfully!")
 
-        .click(Selector(".dx-button-content").nth(8))
-        //Assertion
-        .expect(Selector('.dx-toast-message').innerText).contains("Record deleted successfully!");
 });
+
 

@@ -1,4 +1,5 @@
-[
+{
+    "new":
     {
         "name": "Arif Aslam",
         "percentage": "10",
@@ -7,11 +8,16 @@
         "extension": "214",
         "mobile": "9898989898"
     },
+    "update":
     {
+        "name": "Arif Aslam",
         "percentage": "20",
         "title": "Mr.",
         "email": "arif.aslam@demo.com",
         "extension": "215",
         "mobile": "9797979797"
+    },
+    "delete": {
+        "name": "Arif Aslam"
     }
-]
+}
