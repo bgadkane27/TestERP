@@ -15,8 +15,7 @@ class PaymentTermPage {
         this.savebutton = Selector("#MainMenu_DXI0_T, #MainMenu_DXI0_Img")   
         this.paymenttermnameinput = Selector(".dx-texteditor-input").nth(2)
         this.paymenttermselect = Selector(".list-hyperlink")
-        // this.paymenttermview = Selector()
-        // this.paymenttermdoubleclick = Selector()
+        this.paymenttermedit = Selector("#MainMenu_DXI2_T")
         this.paymenttermcontextmenu = Selector("#MainMenu_DXI12_PImg")
         this.deletebutton = Selector("#MainMenu_DXI3_T")
         this.deleteokbutton = Selector('.dx-button-content .dx-button-text').withText('Ok')
@@ -46,8 +45,13 @@ class PaymentTermPage {
         .typeText(this.duedays, duedays)
         .click(this.savebutton)        
     }
-    async updatePaymentTerm(paymentterm) {
-
+    async updatePaymentTerm(name,namearabic,duedays,description) {
+        await t
+        .typeText(this.paymenttermnameinput, name)
+        .wait(2000)
+        .click(this.paymenttermselect)
+        .wait(1000)
+        .click(this.paymenttermedit)
     }
     async deletePaymentTerm(name) {
         await t
@@ -57,8 +61,6 @@ class PaymentTermPage {
         .click(this.paymenttermcontextmenu)
         .click(this.deletebutton)
         .click(this.deleteokbutton)
-
-
     }    
 }
 

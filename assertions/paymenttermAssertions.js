@@ -20,6 +20,6 @@ export const assertPaymentTermDelete = async(t, expectedMessage) => {
 
 export const assertPaymentTermUpdate = async(t, expectedMessage) => {
     await t
-    .expect(Selector("input[name='Salesman.Email'], #Salesman.Email_I").value).contains(expectedMessage)
+    .expect(Selector("input[name='PaymentTerm.Name'], #PaymentTerm.Name_I").value).contains(expectedMessage)
 };
 
