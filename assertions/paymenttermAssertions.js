@@ -1,24 +1,24 @@
 // assertions/salesmanAssertions.js
 import { Selector } from "testcafe";
 
-export const assertSalesmanCreated = async (t, expectedMessage) => {
+export const assertPaymentTermCreated = async (t, expectedMessage) => {
     await t
         .expect(Selector('.dx-toast-message').innerText).contains(expectedMessage);
 };
 
 
-export const assertSalesmanDuplicate = async(t, expectedMessage) => {
+export const assertPaymentTermDuplicate = async(t, expectedMessage) => {
     await t
     .expect(Selector('#ValidationSummary').innerText).contains(expectedMessage)
 };
 
-export const assertSalesmanDelete = async(t, expectedMessage) => {
+export const assertPaymentTermDelete = async(t, expectedMessage) => {
     await t
     .expect(Selector('.dx-toast-message').innerText).contains(expectedMessage)
 };
 
 
-export const assertSalesmanUpdate = async(t, expectedMessage) => {
+export const assertPaymentTermUpdate = async(t, expectedMessage) => {
     await t
     .expect(Selector("input[name='Salesman.Email'], #Salesman.Email_I").value).contains(expectedMessage)
 };

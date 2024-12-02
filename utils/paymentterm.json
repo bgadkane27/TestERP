@@ -1,0 +1,19 @@
+{
+    "new":
+    {
+        "name": "New",
+        "arabicname": "New",
+        "duedays": "30",
+        "description": "New Term"
+        
+    },
+    "update":{
+        "name": "Update",
+        "arabicname": "Update",
+        "duedays": "50",
+        "description": "Update Term"
+    },
+    "delete":{
+        "name": "New"
+    }
+}
