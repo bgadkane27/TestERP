@@ -1,0 +1,17 @@
+{
+    "new":
+    {
+        "name": "New",
+        "arabicname": "New",
+        "description": "New Term"
+        
+    },
+    "update":{
+        "name": "Update",
+        "arabicname": "Update",
+        "description": "Update Term"
+    },
+    "delete":{
+        "name": "Update"
+    }
+}

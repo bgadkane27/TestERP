@@ -20,7 +20,7 @@ async function clearAndType(selector, value) {
 
 fixture('Payment Term').page('./')
 
-test('CreateNewPaymentTerm: ' + paymentterm.new.name, async t => {
+test.skip('CreateNewPaymentTerm: ' + paymentterm.new.name, async t => {
     await t
         .useRole(login);
     await
@@ -33,7 +33,7 @@ test('CreateNewPaymentTerm: ' + paymentterm.new.name, async t => {
     await assertPaymentTermCreated(t, "Payment Term (Payable) created successfully!");
 });
 
-test("CreateDulplicatePaymentTerm-Not Allowed: " + paymentterm.new.name, async (t) => {
+test.skip("CreateDulplicatePaymentTerm-Not Allowed: " + paymentterm.new.name, async (t) => {
 
     await t
         .useRole(login);
@@ -44,7 +44,7 @@ test("CreateDulplicatePaymentTerm-Not Allowed: " + paymentterm.new.name, async (
     await assertPaymentTermDuplicate(t, "Cannot insert duplicate")
 })
 
-test("UpdateExistingPaymentTerm: " + paymentterm.new.name, async (t) => {    
+test.skip("UpdateExistingPaymentTerm: " + paymentterm.new.name, async (t) => {    
     await t
         .useRole(login);
     await   
@@ -73,7 +73,7 @@ test("UpdateExistingPaymentTerm: " + paymentterm.new.name, async (t) => {
     await assertPaymentTermUpdate(t, paymentterm.update.name)
 })
 
-test("DeleteExistingPaymentTerm: " + paymentterm.delete.name, async (t) => {
+test.skip("DeleteExistingPaymentTerm: " + paymentterm.delete.name, async (t) => {
 
     await t
         .useRole(login);

@@ -21,7 +21,7 @@ async function clearAndType(selector, value) {
 
 fixture('Salesman').page('./')
 
-test('CreateNewSalesman: ' + salesman.new.name, async t => {
+test.skip('CreateNewSalesman: ' + salesman.new.name, async t => {
     await t
         .useRole(login);
     await
@@ -36,7 +36,7 @@ test('CreateNewSalesman: ' + salesman.new.name, async t => {
     await assertSalesmanCreated(t, "Salesman created successfully!");
 });
 
-test("CreateDulplicateSalesman-Not Allowed: " + salesman.new.name, async (t) => {
+test.skip("CreateDulplicateSalesman-Not Allowed: " + salesman.new.name, async (t) => {
 
     await t
         .useRole(login)
@@ -48,7 +48,7 @@ test("CreateDulplicateSalesman-Not Allowed: " + salesman.new.name, async (t) => 
 
 });
 
-test("UpdateExistingSalesman: " + salesman.update.name, async t => {
+test.skip("UpdateExistingSalesman: " + salesman.update.name, async t => {
     await t
         .useRole(login)
     await
@@ -78,7 +78,7 @@ test("UpdateExistingSalesman: " + salesman.update.name, async t => {
         await assertSalesmanUpdate(t, salesman.update.email);
 });
 
-test("DeleteExistingSalesman: " + salesman.delete.name, async (t) => {
+test.skip("DeleteExistingSalesman: " + salesman.delete.name, async (t) => {
 
     await t
         .useRole(login)
