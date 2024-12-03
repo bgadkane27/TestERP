@@ -65,6 +65,16 @@ class SalesmanPage {
         .doubleClick(this.doubleclick)
         .click(this.salesmangrid)
     }
+
+    async gridSalesman(percentage, title, email, extension, mobile){
+        await t
+        .typeText(this.salespercentage, percentage)
+        .typeText(this.salestitle, title)
+        .typeText(this.salesemail, email)
+        .typeText(this.salesextension, extension)
+        .typeText(this.salesmobile, mobile)
+        .click(this.savebutton)
+    }
 }
 
 export default new SalesmanPage();

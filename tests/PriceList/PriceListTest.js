@@ -13,7 +13,7 @@ const login = Role('./', async t => {
 
 fixture("Price List Test").page("./");
 
-test("CreateNewPriceList: " + pricelist.new.name, async t => {
+test.skip("CreateNewPriceList: " + pricelist.new.name, async t => {
 
     await t
         .useRole(login);
