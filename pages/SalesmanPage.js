@@ -15,10 +15,10 @@ class SalesmanPage {
         this.salesmobile= Selector("input[name='Salesman.MobileNumber'], #Salesman.MobileNumber_I")
         this.savebutton= Selector("#MainMenu_DXI0_T")
         this.doubleclick= Selector(".list-hyperlink")
-        this.salesmaninput= Selector(".dx-texteditor-input").nth(2)
+        this.salesmaninput= Selector('input[aria-label="Filter cell"][role="textbox"][aria-describedby="dx-col-3"]'); //Selector(".dx-texteditor-input").nth(2)
         this.salesmancontextmenu= Selector("#MainMenu_DXI12_PImg")
         this.deletebutton= Selector("#MainMenu_DXI3_T")
-        this.deleteokbutton= Selector(".dx-button-content").nth(6)        
+        this.deleteokbutton=Selector('.dx-button-content .dx-button-text').withText('Ok') //Selector(".dx-button-content").nth(6)        
     }
 
     async navigateToSalesmanSection(){
