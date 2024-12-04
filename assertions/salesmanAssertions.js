@@ -22,4 +22,3 @@ export const assertSalesmanUpdate = async(t, expectedMessage) => {
     await t
     .expect(Selector("input[name='Salesman.Email'], #Salesman.Email_I").value).contains(expectedMessage)
 };
-
