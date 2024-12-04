@@ -91,3 +91,41 @@ test.skip("DeleteExistingSalesman: " + salesman.delete.name, async (t) => {
 });
 
 
+test("Sample" , async t =>{
+    await t
+    .useRole(login)
+    await
+    SalesmanPage.navigateToSalesmanSection()
+    await t
+    .click("#MainMenu_DXI0_T")
+    .wait(1000)
+    .typeText("input[name='Salesman.Name']","Salesman");
+
+    const dropdownToggle = Selector("#Salesman.ParentIdLookup_B-1, .dxeButtonEditButton_Office365")  // Replace with the ID of the toggle button
+    const dropdownOption = Selector('.grid-row-template')    // Replace with the class or ID of the dropdown container
+    .find('.lookup-text')                             // Replace with the class for dropdown items
+    .withText('Alim Shaikh');    
+
+    await t
+    .click(dropdownToggle)
+    .click(dropdownOption)
+    .click("#Other_RPHT")
+
+    const dropdownType = Selector(".dxeButtonEditButton_Office365").nth(4)  // Replace with the ID of the toggle button
+    const dropdownOptions = Selector('.dxeListBoxItemRow_Office365').nth(5)    // Replace with the class or ID of the dropdown container
+    .find('td')                             // Replace with the class for dropdown items
+    .withAttribute('id', 'Salesman.Type_DDD_L_LBI2T0'); 
+
+    await t
+    .click(dropdownType)
+    .click(dropdownOptions)
+
+    await 
+    SalesmanPage.gridSalesman(salesman.new.percentage,
+        salesman.new.title,
+        salesman.new.email,
+        salesman.new.extension,
+        salesman.new.mobile
+    )
+ })
+
