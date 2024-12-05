@@ -26,17 +26,11 @@ class SalesmanPage {
         .click(this.setupmenu)
         .click(this.setupsalesman)        
     }
-    async createNewSalesman(name, percentage, title, email, extension, mobile){
+    async createNewSalesman(name){
         await t
         .click(this.newsalesman)
         .typeText(this.salesmanname, name)
-        .click(this.salesmangrid)
-        .typeText(this.salespercentage, percentage)
-        .typeText(this.salestitle, title)
-        .typeText(this.salesemail, email)
-        .typeText(this.salesextension, extension)
-        .typeText(this.salesmobile, mobile)
-        .click(this.savebutton)        
+        .click(this.salesmangrid)       
     }
 
     async duplicateSalesman(name){

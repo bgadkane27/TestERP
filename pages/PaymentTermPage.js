@@ -13,7 +13,7 @@ class PaymentTermPage {
         this.autoinsertsupplier =Selector('.dxSwitcher').nth(1)
         this.description = Selector("textarea[name='PaymentTerm.Description'], #PaymentTerm.Description_I") 
         this.savebutton = Selector("#MainMenu_DXI0_T, #MainMenu_DXI0_Img")   
-        this.paymenttermnameinput = Selector(".dx-texteditor-input").nth(2)
+        this.paymenttermnameinput = Selector('input[aria-label="Filter cell"][role="textbox"][aria-describedby="dx-col-3"]');//Selector(".dx-texteditor-input").nth(2)
         this.paymenttermselect = Selector(".list-hyperlink")
         this.paymenttermedit = Selector("#MainMenu_DXI2_T")
         this.paymenttermcontextmenu = Selector("#MainMenu_DXI12_PImg")
@@ -45,7 +45,7 @@ class PaymentTermPage {
         .typeText(this.duedays, duedays)
         .click(this.savebutton)        
     }
-    async updatePaymentTerm(name,namearabic,duedays,description) {
+    async updatePaymentTerm(name) {
         await t
         .typeText(this.paymenttermnameinput, name)
         .wait(2000)

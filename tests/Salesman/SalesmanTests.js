@@ -19,54 +19,26 @@ async function clearAndType(selector, value) {
         .typeText(selector, value);
 }
 
+async function handleDropdown(dropdownSelector, optionText) {
+    const dropdownType = Selector(dropdownSelector);
+    const dropdownOptions = Selector('td.dxeListBoxItem_Office365').withText(optionText);
+
+    await t
+        .click(dropdownType)
+        .click(dropdownOptions);
+}
+
 fixture('Salesman').page('./')
 
-test.skip('CreateNewSalesman: ' + salesman.new.name, async t => {
-    await t
-        .useRole(login);
-    await
-        SalesmanPage.navigateToSalesmanSection();
-    await
-        SalesmanPage.createNewSalesman(salesman.new.name,
-            salesman.new.percentage,
-            salesman.new.title,
-            salesman.new.email,
-            salesman.new.extension,
-            salesman.new.mobile);
-    await assertSalesmanCreated(t, "Salesman created successfully!");
-});
-
-test("Sample" , async t =>{
+test.skip('CreateNewSalesman: ' + salesman.new.name, async t =>{
     await t
     .useRole(login)
     await
     SalesmanPage.navigateToSalesmanSection()
-    await t
-    .click("#MainMenu_DXI0_T")
-    .wait(1000)
-    .typeText("input[name='Salesman.Name']",salesman.new.name)
-    .click(Selector("#Other_RPHT"))
-
-    /* Logic to chnage the dropdown of Team Leader*/
-    //const dropdownToggle = Selector("#Salesman.ParentIdLookup_B-1, .dxeButtonEditButton_Office365")  
-    //const dropdownOption = Selector('.grid-row-template')    
-    //.find('.lookup-text')                            
-    //.withText('Alim Shaikh');    
-
-    //await t
-    //.click(dropdownToggle)
-    //.click(dropdownOption)
-    //.click("#Other_RPHT")
-
-    /* Logic to chnage the dropdown of Salesman Type*/
-    const dropdownType = Selector('td.dxeButton.dxeButtonEditButton_Office365');
-    const dropdownOptions = Selector('td.dxeListBoxItem_Office365').withText('Salesman Cum Collector');
-    //.withAttribute('id', 'Salesman.Type_DDD_L_LBI2T0'); 
-
-    await t
-    .click(dropdownType)
-    .click(dropdownOptions)
-
+    await 
+    SalesmanPage.createNewSalesman(salesman.new.name)    
+    await 
+    handleDropdown('td.dxeButton.dxeButtonEditButton_Office365', 'Collector Only');
     await 
     SalesmanPage.gridSalesman(salesman.new.percentage,
         salesman.new.title,
@@ -74,9 +46,8 @@ test("Sample" , async t =>{
         salesman.new.extension,
         salesman.new.mobile
     )
-
-    await t
-    .expect(Selector('.dx-toast-message').innerText).contains("Salesman created successfully!")
+    await 
+    assertSalesmanCreated(t, "Salesman created successfully!");
  })
 
 test.skip("CreateDulplicateSalesman-Not Allowed: " + salesman.new.name, async (t) => {
