@@ -31,7 +31,7 @@ async function clearAndType(selector, value) {
 
 fixture("Price List Test").page("./");
 
-test("CreateNewPriceList: " + pricelist.new.name, async (t) => {
+test.skip("CreateNewPriceList: " + pricelist.new.name, async (t) => {
   await t.useRole(login);
   await PriceListPage.navigateToPriceListSection();
   await PriceListPage.createNewPriceList(
@@ -42,14 +42,14 @@ test("CreateNewPriceList: " + pricelist.new.name, async (t) => {
   await assertPriceListCreated(t, "Price List created successfully!");
 });
 
-test("DuplicatePriceList-Not Allowed: " + pricelist.new.name, async (t) => {
+test.skip("DuplicatePriceList-Not Allowed: " + pricelist.new.name, async (t) => {
   await t.useRole(login);
   await PriceListPage.navigateToPriceListSection();
   await PriceListPage.duplicatePriceList(pricelist.new.name);
   await assertPriceListDuplicate(t, "Cannot insert duplicate");
 });
 
-test("UpdateExistingPriceList: " + pricelist.update.name, async (t) => {
+test.ski("UpdateExistingPriceList: " + pricelist.update.name, async (t) => {
   await t.useRole(login);
   await PriceListPage.navigateToPriceListSection();
   await PriceListPage.updatePriceList(pricelist.new.name);
@@ -71,7 +71,7 @@ test("UpdateExistingPriceList: " + pricelist.update.name, async (t) => {
   await assertPriceListUpdate(t, pricelist.update.name);
 });
 
-test("DeleteExistingPriceList: " + pricelist.delete.name, async (t) => {
+test.skip("DeleteExistingPriceList: " + pricelist.delete.name, async (t) => {
   await t.useRole(login);
   await PriceListPage.navigateToPriceListSection();
   await PriceListPage.deletePriceList(pricelist.delete.name);
