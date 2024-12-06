@@ -49,7 +49,7 @@ test.skip("DuplicatePriceList-Not Allowed: " + pricelist.new.name, async (t) => 
   await assertPriceListDuplicate(t, "Cannot insert duplicate");
 });
 
-test.ski("UpdateExistingPriceList: " + pricelist.update.name, async (t) => {
+test.skip("UpdateExistingPriceList: " + pricelist.update.name, async (t) => {
   await t.useRole(login);
   await PriceListPage.navigateToPriceListSection();
   await PriceListPage.updatePriceList(pricelist.new.name);

@@ -1,4 +1,4 @@
-// assertions/salesmanAssertions.js
+
 import { Selector } from "testcafe";
 
 export const assertPaymentTermCreated = async (t, expectedMessage) => {

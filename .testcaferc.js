@@ -10,6 +10,7 @@ baseUrl: "https://testerp.onenfinity.com/sales/Home",
 selectorTimeOut: 5000,
 assertionTimeOut: 5000,
 pageLoadTimeOut: 5000,
+pageRequestTimeout:5000,
 speed: 1,
 
 // screenshots: {

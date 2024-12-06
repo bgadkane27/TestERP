@@ -1,4 +1,4 @@
-import { Selector } from "testcafe";
+import { Selector, t } from "testcafe";
 
 
 class PaymentMethodPage {
@@ -28,7 +28,32 @@ class PaymentMethodPage {
             .typeText(this.paymentmethodname, name)
             .typeText(this.paymentmethodnamearabic, namearabic)
             .typeText(this.paymentmethoddescription, description)
-            .click(this.savebutton);
+    }
+
+    async duplicatePaymentMethod(name, namearabic, description) {
+        await t
+            .click(this.newpaymentmethod)
+            .typeText(this.paymentmethodname, name)
+            .typeText(this.paymentmethodnamearabic, namearabic)
+            .typeText(this.paymentmethoddescription, description)
+    }
+
+    async deletePaymentMethod(name){
+            await t
+            .typeText(this.paymentmethodinputname, name)
+            .wait(2000)
+            .click(this.paymentmethodselect)
+            .click(this.paymentmethodcontextmenu)
+            .click(this.deletebutton)
+            .click(this.deleteokbutton)
+    }
+
+    async updatePaymentMethod(name) {
+        await t
+            .typeText(this.paymentmethodinputname, name)
+            .wait(2000)
+            .click(this.paymentmethodselect)
+            .click(this.paymentmethodedit)
     }
 }
 

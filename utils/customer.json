@@ -1,0 +1,13 @@
+{
+    "new":{
+        "name":"New",
+        "arabicname":"New"
+    },
+    "update":{
+        "name":"Update",
+        "arabicname":"Update"
+    },
+    "delete":{
+        "name":"New"
+    }
+}
