@@ -3,7 +3,7 @@ import LoginPage from '../../pages/LoginPage';
 import config from '../../utils/login.json';
 import CustomerPage from '../../pages/CustomerPage';
 import customer from '../../utils/customer.json';
-//import { assertCustomerCreated, assertCustomerDuplicate, assertCustomerDelete, assertCustomerUpdate } from '../../assertions/customerAssertions';
+import { assertCustomerCreated, assertCustomerDelete, assertCustomerUpdate } from '../../assertions/customerAssertions';
 
 const login = Role('./', async t => {
     await t.maximizeWindow()
@@ -13,7 +13,7 @@ const login = Role('./', async t => {
 
 fixture("Customer Test").page("./");
 
-test.skip("CreateNewCustomer: " + customer.new.name, async (t) => {    
+test("CreateNewCustomer: " + customer.new.name, async (t) => {    
     await t
         .useRole(login)
     await CustomerPage.navigateToCustomerSection()       
@@ -25,4 +25,5 @@ test("DeleteExistingCustomer: " + customer.delete.name, async (t) => {
         .useRole(login)
     await CustomerPage.navigateToCustomerSection()
     await CustomerPage.deleteCustomer(customer.delete.name)
+    await assertCustomerDelete(t, "Customer deleted successfully")
 })
