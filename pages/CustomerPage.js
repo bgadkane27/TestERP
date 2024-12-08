@@ -12,7 +12,7 @@ class CustomerPage {
         this.savebutton = Selector("#MainMenu_DXI0_T, #MainMenu_DXI0_Img");
         this.customerinputname = Selector('input[aria-label="Filter cell"][role="textbox"][aria-describedby="dx-col-3"]');
         this.customerselect = Selector(".list-hyperlink");
-        //this.customeredit = Selector("#MainMenu_DXI2_T");
+        this.customeredit = Selector("#MainMenu_DXI2_T");
         this.customercontextmenu = Selector("#MainMenu_DXI19_PImg");
         this.deletebutton = Selector("#MainMenu_DXI3_T");
         this.deleteokbutton = Selector('.dx-button-content .dx-button-text').withText('Ok');
@@ -26,20 +26,29 @@ class CustomerPage {
     async createNewCustomer(name, namearabic) {
         await t
             .click(this.newcustomer)
+            .wait(2000)
             .typeText(this.customername, name)
             .typeText(this.customernamearabic, namearabic)
-            .click(this.savebutton);
+            .click(this.savebutton)
     }
 
     async deleteCustomer(name) {
         await t
             .typeText(this.customerinputname, name)
-            .wait(2000)
+            .wait(3000)
             .click(this.customerselect)
             .click(this.customercontextmenu)
             .click(this.deletebutton)
             .click(this.deleteokbutton);
     }
+
+    async updateCustomer(name) {
+        await t
+            .typeText(this.customerinputname, name)
+            .wait(3000)
+            .click(this.customerselect)
+            .click(this.customeredit)
+    } 
 }
 
 export default new CustomerPage();

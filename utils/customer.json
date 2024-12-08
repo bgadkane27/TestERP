@@ -5,9 +5,13 @@
     },
     "update":{
         "name":"Update",
-        "arabicname":"Update"
+        "arabicname":"Update",
+        "description":"Update",
+        "email":"update@demo.com",
+        "mobile":"9898989898",
+        "telephone":"9797979797"
     },
     "delete":{
-        "name":"New"
+        "name":"Update"   
     }
 }
