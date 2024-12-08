@@ -1,0 +1,16 @@
+{
+    "new":
+    {
+        "name": "New",
+        "arabicname": "New",
+        "salesprice": "100",
+        "purchaseprice": "50"        
+    },
+    "update":{
+        "name": "Update",
+        "arabicname": "Update"
+    },
+    "delete":{
+        "name": "New"
+    }
+}
