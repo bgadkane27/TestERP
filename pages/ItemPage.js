@@ -33,7 +33,7 @@ class ItemPage {
         .click(this.selectitem)
         .click(this.itemcontextmenu)
         .click(this.deletebutton)
-        .wait(2000)
+        //.wait(1000)
         .click(this.deleteokbutton)
     }
 }
