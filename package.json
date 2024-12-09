@@ -3,7 +3,7 @@
     "testcafe": "^3.7.0"
   },
   "scripts": {
-    "test": "testcafe chrome tests /*.js",
+    "test": "testcafe edge tests /*.js",
     "test:screenshots": "testcafe chrome tests Salesman/*.js --screenshots ./screenshots",
     "test:reports": "testcafe chrome tests Salesman/*.js --skip-js-errors --reporter html:reports/report.html"
   },
