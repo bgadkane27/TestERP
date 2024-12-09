@@ -31,17 +31,46 @@ async function handleDropdownofItemType(dropdownSelector, optionText) {
         .click(dropdownOptions);
 }
 
+async function handleDropdownofTrackingMode(dropdownSelector, optionText) {
+    const dropdownType = Selector(dropdownSelector).nth(11)
+    const dropdownOptions = Selector('.dx-item-content, .dx-list-item-content').withText(optionText);  
+
+    await t
+        .click(dropdownType)
+        .click(dropdownOptions);
+}
+
+async function handleDropdownofCostingMethod(dropdownSelector, optionText) {
+    const dropdownType = Selector(dropdownSelector).nth(12)
+    const dropdownOptions = Selector('.dx-item-content, .dx-list-item-content').withText(optionText);  
+
+    await t
+        .click(dropdownType)
+        .click(dropdownOptions);
+}
+
 fixture('Item Tests').page('./')
 
 test("CreateNewItem: " + item.new.name, async (t) => {
     await t
         .useRole(login)
     await ItemPage.navigateToItemSection()    
-    await ItemPage.createItem(item.new.name, item.new.arabicname, item.new.salesprice, item.new.purchaseprice)
-    await handleDropdownofUOM('div.dx-button-content', 'Each')
-    await handleDropdownofItemType('.dx-button-content', 'Bill Of Material')
+    await ItemPage.createItem(item.new.name, item.new.arabicname)
+    await handleDropdownofUOM('div.dx-button-content', 'Each') // Provide UOM
+    await handleDropdownofItemType('.dx-button-content', 'Inventory')   // Provide Item Type 
+    await handleDropdownofTrackingMode('div.dx-button-content', 'Not Applicable') // Provide Tracking Mode
+    await handleDropdownofCostingMethod('div.dx-button-content', 'Weighted Average') // Provide Costing Method
     await t
         .click("#MainMenu_DXI0_T")
-
     await assertItemCreated(t, item.new.name);
 });
+
+test("DeleteExistingItem: " + item.delete.name, async (t) => {
+    await t
+        .useRole(login)
+    await t
+        .wait(2000)
+        .click("#leftNavigation_I0i2_")
+    await ItemPage.deleteItem(item.delete.name)
+    await assertItemDelete(t, "Item deleted successfully");
+})

@@ -3,6 +3,7 @@ let os = require('os')
 module.exports = {
 skipJsErrors: true,
 hostname : os.hostname(),
+//disableNativeAutomation: true,
 // other settings
 baseUrl: "https://testerp.onenfinity.com/sales/Home",
 //concurrency : 2,
