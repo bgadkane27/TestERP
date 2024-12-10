@@ -118,7 +118,7 @@ test(
       await t.click("#MainMenu_DXI0_T");
       await assertItemCreated(t, item.new.name2);
     }
-  );
+);
 
 test(
     "CreateNewItem: " +
@@ -148,11 +148,13 @@ test(
       await t.click("#MainMenu_DXI0_T");
       await assertItemCreated(t, item.new.name3);
     }
-  );  
+); 
 
-test.skip("DeleteExistingItem: " + item.delete.name, async (t) => {
+
+test("DeleteExistingItem: " + item.delete.name, async (t) => {
   await t.useRole(login);
   await t.wait(2000).click("#leftNavigation_I0i2_");
   await ItemPage.deleteItem(item.delete.name);
   await assertItemDelete(t, "Item deleted successfully");
 });
+    

@@ -8,7 +8,7 @@ class ItemPage {
         this.itemnamearabic = Selector("input[name='NameL2']")
         this.savebutton = Selector("#MainMenu_DXI0_T, #MainMenu_DXI0_Img")
         this.iteminput = Selector('input[aria-label="Filter cell"][role="textbox"][aria-describedby="dx-col-3"]')
-        this.selectitem= Selector(".list-hyperlink, input[aria-describedby='dx-col-3']").withExactText("New")
+        this.selectitem= Selector(".list-hyperlink").withExactText("Weight")
         this.itemcontextmenu = Selector("#MainMenu_DXI18_P")
         this.deletebutton = Selector("#MainMenu_DXI4_T")
         this.deleteokbutton = Selector('.dx-button-content .dx-button-text').withText('Ok') 
