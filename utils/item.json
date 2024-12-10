@@ -1,10 +1,16 @@
 {
     "new":
     {
-        "name": "New",
+        "name1": "Weight",
+        "name2": "Fifo",
+        "name3": "Lifo",
         "arabicname": "New",
-        "salesprice": "100",
-        "purchaseprice": "50"        
+        "UOM": "Each",
+        "Type": "Inventory",
+        "TrackingMode":"Not Applicable",
+        "CostingMethod1": "Weighted Average",
+        "CostingMethod2": "Fifo",
+        "CostingMethod3": "Lifo"      
     },
     "update":{
         "name": "Update",
