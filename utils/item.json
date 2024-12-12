@@ -1,7 +1,7 @@
 {
     "new": [
       {
-        "name": "Weight",
+        "name": "InventoryWeightage",
         "arabicname": "Weight",
         "UOM": "Each",
         "Type": "Inventory",
@@ -9,7 +9,7 @@
         "CostingMethod": "Weighted Average"
       },
       {
-        "name": "Fifo",
+        "name": "InventoryFifo",
         "arabicname": "FIFO",
         "UOM": "Each",
         "Type": "Inventory",
@@ -17,23 +17,56 @@
         "CostingMethod": "Fifo"
       },
       {
-        "name": "Lifo",
+        "name": "InventoryLifo",
         "arabicname": "LIFO",
         "UOM": "Each",
         "Type": "Inventory",
+        "TrackingMode": "Not Applicable",
+        "CostingMethod": "Lifo"
+      },
+      {
+        "name": "ServiceWeightage",
+        "arabicname": "Service",
+        "UOM": "Each",
+        "Type": "Service",
+        "TrackingMode": "Not Applicable",
+        "CostingMethod": "Weighted Average"
+      },
+      {
+        "name": "ServiceFifo",
+        "arabicname": "Service",
+        "UOM": "Each",
+        "Type": "Service",
+        "TrackingMode": "Not Applicable",
+        "CostingMethod": "Fifo"
+      },
+      {
+        "name": "ServiceLifo",
+        "arabicname": "Service",
+        "UOM": "Each",
+        "Type": "Service",
         "TrackingMode": "Not Applicable",
         "CostingMethod": "Lifo"
       }      
     ],
     "delete": [
         {
-            "name":"Weight"    
+            "name":"InventoryWeightage"    
         },
         {
-            "name":"Fifo"
+            "name":"InventoryFifo"
         },
         {
-            "name":"Lifo"
+            "name":"InventoryLifo"
+        },
+        {    
+            "name":"ServiceWeightage"
+        },
+        {
+            "name":"ServiceFifo"
+        },
+        {
+            "name":"ServiceLifo"
         }
     ]
   }
