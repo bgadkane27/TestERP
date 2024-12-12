@@ -32,6 +32,7 @@ class ItemPage {
         .typeText(this.iteminput, name)
         .wait(2000)
         .click(selectitem)
+        .wait(2000)
         .click(this.itemcontextmenu)
         .click(this.deletebutton)
         .click(this.deleteokbutton)
