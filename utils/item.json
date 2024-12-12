@@ -1,22 +1,40 @@
 {
-    "new":
-    {
-        "name1": "Weight",
-        "name2": "Fifo",
-        "name3": "Lifo",
-        "arabicname": "New",
+    "new": [
+      {
+        "name": "Weight",
+        "arabicname": "Weight",
         "UOM": "Each",
         "Type": "Inventory",
-        "TrackingMode":"Not Applicable",
-        "CostingMethod1": "Weighted Average",
-        "CostingMethod2": "Fifo",
-        "CostingMethod3": "Lifo"      
-    },
-    "update":{
-        "name": "Update",
-        "arabicname": "Update"
-    },
-    "delete":{
-        "name": "Weight"
-    }
-}
+        "TrackingMode": "Not Applicable",
+        "CostingMethod": "Weighted Average"
+      },
+      {
+        "name": "Fifo",
+        "arabicname": "FIFO",
+        "UOM": "Each",
+        "Type": "Inventory",
+        "TrackingMode": "Not Applicable",
+        "CostingMethod": "Fifo"
+      },
+      {
+        "name": "Lifo",
+        "arabicname": "LIFO",
+        "UOM": "Each",
+        "Type": "Inventory",
+        "TrackingMode": "Not Applicable",
+        "CostingMethod": "Lifo"
+      }      
+    ],
+    "delete": [
+        {
+            "name":"Weight"    
+        },
+        {
+            "name":"Fifo"
+        },
+        {
+            "name":"Lifo"
+        }
+    ]
+  }
+  
